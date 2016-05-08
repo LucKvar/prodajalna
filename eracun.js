@@ -238,12 +238,14 @@ streznik.post('/stranka', function(zahteva, odgovor) {
   var form = new formidable.IncomingForm();
   
   form.parse(zahteva, function (napaka1, polja, datoteke) {
+    zahteva.session.uspelaPrijava = polja.seznamStrank;
     odgovor.redirect('/')
   });
 })
 
 // Odjava stranke
 streznik.post('/odjava', function(zahteva, odgovor) {
+  zahteva.session.uspelaPrijava = null;
     odgovor.redirect('/prijava') 
 })
 
